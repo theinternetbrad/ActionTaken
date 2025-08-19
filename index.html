@@ -150,7 +150,10 @@
 
         async function loadCodes() {
             try {
-                const response = await fetch('codes.json');
+                // Use a dynamic URL to ensure the path is correct on any hosting environment
+                const codesUrl = new URL('codes.json', window.location.href);
+                const response = await fetch(codesUrl);
+
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
